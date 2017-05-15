@@ -1,0 +1,79 @@
+class Mark extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      
+      value: 
+      'Heading' + "\n"+
+      '======'+ "\n"+ 'Sub-heading'+ "\n"+
+'-----------' + "\n"+ '###' +' Another deeper heading' +"\n"+'Paragraphs are separated'+ "\n"+
+'by a blank line.'+ "\n"+"\n"+'Leave 2 spaces at the end of a line to do a'   +"\n"+"\n"+
+'line break'+ "\n"+ "\n"+'Text attributes *italic*, **bold**,'+ 
+'`monospace`,'+ '~~strikethrough~~ .'+ "\n"+ "\n"+
+'Shopping list:'
++ "\n"+ "\n"+
+  '* apples'+ "\n"+ 
+  '* oranges' + "\n"+ 
+  '* pears'
+      + "\n"+ "\n"+
+      'Numbered list:'
++ "\n"+ 
+  '1. apples'+ "\n"+ 
+  '2. oranges'+"\n"+
+  '3. pears' + "\n"+ "\n"+
+      
+      'The rain---not the reign---in'+ "\n"+
+'Spain.'
+      + "\n"+ "\n"+
+'[George Phalen]'+ '(https://freecodecamp.com/gphalen)'    
+    };
+
+    this.handleChange = this.handleChange.bind(this);
+    
+  }
+
+  handleChange(event) {
+    this.setState({value: event.target.value});
+  }
+
+  
+  rawMarkup() {
+    let rawMark = marked(this.state.value, {sanitize: true} );
+    return { __html: rawMark };
+  }
+  
+  render() {
+    var post=this.state.value;
+    
+    return (
+      
+      
+    <div    className="post" >
+        <textarea  id ="textAr"  value={this.state.value} onChange={this.handleChange} />
+       
+        <span style={{float:'right'}}  dangerouslySetInnerHTML={this.rawMarkup()}    />
+       
+        </div>
+        
+        
+      
+          
+        
+        
+        
+        
+      
+    );
+    
+  }
+}
+
+ReactDOM.render(
+  <Mark />,
+  document.getElementById('root')
+);
+
+
+
+
+
